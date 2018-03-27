@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel=stylesheet href=jquery.mobile-1.4.5.css>
+	<script src=demos/js/jquery.js></script>
+	<script src=demos/js/jquery.mobile-1.4.5.min.js></script>
+	<script>
+		$(document).ready(function(){
+			$('.target').on('change', function(){
+				var url = $(this).val();
+				window.location = url;
+			});
+		});
+
+		function pangkat(a, b, to)
+		{
+			z= document.getElementById(a).value;
+			z=parseInt(z);
+			z1= document.getElementById(b).value;
+			z1=parseInt(z1);
+			var hasil;
+			hasil = Math.pow(z,z1);
+			document.getElementById(to).value=hasil;
+
+		}
+
+		function faktorial(a, to)
+		{
+			z= document.getElementById(a).value;
+			z=parseInt(z);
+			var hasil = 1;
+			for (var i=z;i>0;i--)
+			{
+				hasil*=i;
+			}
+			document.getElementById(to).value=hasil;
+		}
+
+		var myVar;
+
+		function myFunction() {
+			myVar = setTimeout(showPage, 6000);
+		}
+
+		function showPage() {
+			document.getElementById("loader").style.display = "none";
+			document.getElementById("win2").style.display = "block";
+		}
+
+		function rgb() {
+			var n = document.getElementById("rgb").value;
+			if (n == "") {
+				alert ("Please try again)");
+				document.getElementById("rgb").value = "";
+				document.getElementById("rgb").focus();
+				return false;
+			}
+
+			document.getElementById("capt").style.backgroundColor =n;
+		}
+
+		$( document ).on( "click", ".show-page-loading-msg", function() {
+			var $this = $( this ),
+			theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+			msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+			textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+			textonly = !!$this.jqmData( "textonly" );
+			html = $this.jqmData( "html" ) || "";
+			$.mobile.loading( "show", {
+				text: msgText,
+				textVisible: textVisible,
+				theme: theme,
+				textonly: textonly,
+				html: html
+			});
+		})
+		.on( "click", ".hide-page-loading-msg", function() {
+			$.mobile.loading( "hide" );
+		});
+
+	</script>
+	<style>
+	.loader {
+		border: 16px solid #f3f3f3;
+		border-radius: 50%;
+		border-top: 16px solid #3498db;
+		width: 120px;
+		height: 120px;
+		-webkit-animation: spin 2s linear infinite;
+		animation: spin 2s linear infinite;
+	}
+
+	/* Safari */
+	@-webkit-keyframes spin {
+		0% { -webkit-transform: rotate(0deg); }
+		100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+	}
+
+
+	@media all and (max-width: 35em) {
+		.my-breakpoint .ui-block-a,
+		.my-breakpoint .ui-block-b,
+		.my-breakpoint .ui-block-c,
+		.my-breakpoint .ui-block-d,
+		.my-breakpoint .ui-block-e {
+			width: 100%;
+			float:none;
+		}
+	}
+
+	@media all and (min-width: 45em) {
+		.my-breakpoint.ui-grid-b .ui-block-a { width: 25%; }
+		.my-breakpoint.ui-grid-b .ui-block-b { width: 40%; },
+		.my-breakpoint.ui-grid-b .ui-block-c { width: 24.925%; }
+	}
+
+
+
+</style>
+<title>
+
+</title>
+</head>
+<body>
+	<div data-role="page" id =win1>
+		<div data-role="header">
+			<select name="select-choice-0" class="target">
+				<option value="0">Pilih menu</option>
+				<option value="#win1">Menu 1</option>
+				<option value="#win2">Menu 2</option>
+				<option value="#win3">Menu 3</option>
+			</select>
+
+		</div>
+		<div data-role="panel" id="mypanel">
+			<p>Halaman ini adalah Halaman Kalkulator</p>
+		</div>
+		<div data-role="content">
+
+			<h1>Kalkulator Pangkat dan Faktorial</h1>
+			<br>
+			<input type="text" name="la" id="la" placeholder="masukkan angka yang mau dipangkatkan: ">
+			<input type="text" name="li" id="li" placeholder="pangkat">
+			<input type="text" name="hasil" id="hasil" placeholder="hasil">
+			<button onclick="pangkat('la','li','hasil')">Pangkatkan!</button>
+
+			<input type="text" name="lu" id="lu" placeholder="angka yang mau di faktorialkan">
+			<input type="text" name="hasil1" id="hasil1" placeholder="hasil">
+			<button onclick="faktorial('lu','hasil1')">Faktorialkan! </button>
+			<a href="#mypanel" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Panel</a>
+		</div>
+	</div>
+
+	<div data-role="page"  id = win2>
+
+
+		<div data-role="header">
+			<select name="select-choice-0" class="target">
+				<option value="0">Pilih menu</option>
+				<option value="#win1">Menu 1</option>
+				<option value="#win2">Menu 2</option>
+				<option value="#win3">Menu 3</option>
+			</select>
+		</div>
+		<div data-role="content">
+			<h3> Input color RGB code : </h3>
+			<input type="text" name="rgb" id="rgb" />
+			<button class="ui-btn ui-corner-all" onclick="rgb()">Show</button>
+			<br>
+			<input type="text" name="capt" id="capt" />
+			<button class="show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Loader</button>
+			
+
+			
+		</div>
+	</div>
+
+
+	<div data-role="page"  id = win3>
+		<div data-role="header">
+			<select name="select-choice-0" class="target">
+				<option value="0">Pilih menu</option>
+				<option value="#win1">Menu 1</option>
+				<option value="#win2">Menu 2</option>
+				<option value="#win3">Menu 3</option>
+			</select>
+		</div>
+		<div data-role="content">
+			<label for="slider-1">Jumlah Mahasiswa hadir:</label>
+			<input type="range" name="slider-1" id="slider-1" value="60" min="0" max="100">
+			<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Click Me!</a>
+			<div data-role="popup" id="popupBasic">
+				<p>Halaman Ini Menampilkan Rangkuman</p>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="ui-grid-b my-breakpoint">
+					<div class="ui-block-a"><div class="ui-body ui-body-d">
+						<p>Macam-macam Teknologi :</p>
+						AMPS (Advanced Mobile Phone Service) atau IS-136 di Amerika Serikat.
+						NMT ( Nordic Mobile Telephony) di Negara-negara Skandavia.
+						HICAP, di Jepang.
+						TACS (Total Access Communications System) di Inggris, Italia, Spanyol, Austria, Irlandia, Jepang dan beberapa negara Eropa
+						C 450 di Jerman Barat, Portugal dan Afrika Selatan
+						C-Netz di Austria dan Jerman
+						Mobitex, di Eropa (Swedia) dan Amerika Utara
+						DataTAC di Amerika Serikat (oleh ARDIS) dan Australia (oleh Telecom Australia/Telstra).
+						CDPD (Cellular Digital Packet Data) di Amerika Serikat.
+
+						Kelebihan :
+						Hanya mampu melayani komunikasi suara saja dan tidak dapat melayani komunikasi data dalam kecepatan tinggi dan besar. 
+						Kelemahan :
+						Hanya memiliki kapasitas trafik yang kecil, satu cell hanya mampu menampung sedikit pelanggan, penggunaan spektrum frekuensi yang boros, dan suara tidak jernih (derau intermodulasi).
+
+
+
+					</div></div>
+					<div class="ui-block-b"><div class="ui-body ui-body-d"><table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns" data-column-popup-theme="a">
+						<thead>
+							<tr class="ui-bar-d">
+								<th data-priority="1">Nomor</th>
+								<th>Materi</th>
+								<th data-priority="3">Tanggal</th>
+								<th data-priority="4">Jam mulai</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>Perkenalan PPM</td>
+								<td>6 Maret 2018</td>
+								<td>17.30</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>Teknologi Introduction</td>
+								<td>13 Maret 2018</td>
+								<td>17.30</td>
+							</tr>
+							<tr>
+								<th>3</th>
+								<td>GitHUb</td>
+								<td>20 Maret 2018</td>
+								<td>17.30</td>
+							</tr>
+							<tr>
+								<th>4</th>
+								<td>Test 1</td>
+								<td>27 Maret 2018</td>
+								<td>17.30</td>
+							</tr>
+							
+						</tbody>
+					</table></div></div>
+					<div class="ui-block-c"><div class="ui-body ui-body-d">
+						<p>Version Control adalah...</p>
+						Sebuah sistem yang mencatat setiap perubahan terhadap sebuah berkas atau kumpulan berkas
+
+						Dibagi menjadi :
+						VCS Lokal
+						VCS Terpusat
+						VCS Terdistribusi
+					</div></div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+</body>
+</html>
